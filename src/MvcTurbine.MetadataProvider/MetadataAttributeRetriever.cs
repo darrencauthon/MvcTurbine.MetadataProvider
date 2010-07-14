@@ -7,7 +7,7 @@ namespace MvcTurbine.MetadataProvider
 {
     public class MetadataAttributeRetriever
     {
-        public IEnumerable<Type> GetAllValidatorTypes()
+        public IEnumerable<Type> GetTypesOfAllMetadataAttributeHandlers()
         {
             var list = new List<Type>();
 
@@ -30,7 +30,8 @@ namespace MvcTurbine.MetadataProvider
 
         private static bool ThisTypeIsAMetadataAttributeHandler(Type x)
         {
-            return x.GetInterfaces().Any(i => (i.FullName ?? string.Empty).StartsWith("MvcTurbine.MetadataProvider.IMetadataAttributeHandler`1"));
+            return x.GetInterfaces()
+                .Any(i => (i.FullName ?? string.Empty).StartsWith("MvcTurbine.MetadataProvider.IMetadataAttributeHandler`1"));
         }
 
         private static IEnumerable<Assembly> GetAllAssemblies()
