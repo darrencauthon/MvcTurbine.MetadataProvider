@@ -10,4 +10,5 @@ csproj.user
 *.swp
 TestResults
 LocalTestRun.testrunconfig
-MvcTurbine.NoRM/TestResult
+*.Resharper.user*
+
