@@ -16,24 +16,24 @@ Say you wanted to convert a 'State' field from an open text box to a dropdown li
 If your input model looked like this:
 
 `
-public class AddressInputModel{
-	public string State { get; set; }
-}
+	public class AddressInputModel{
+		public string State { get; set; }
+	}
 `
 
 You could create a metadata attribute with a handler, like so:
 
 `
-public class StateDropdownAttribute : MetadataAttribute{}
+	public class StateDropdownAttribute : MetadataAttribute{}
 
-public class StateDropdownAttributeHander : IMetadataAttributeHandler<StateDropdownAttribute>
-{
-    public void AlterMetadata(ModelMetadata metadata, CreateMetadataArguments args)
-    {
-        metadata.TemplateHint = "DropDownList";
-        metadata.AdditionalValues["Items"] = new[] {"Kansas", "Missouri"};
-    }
-}
+	public class StateDropdownAttributeHander : IMetadataAttributeHandler<StateDropdownAttribute>
+	{
+		public void AlterMetadata(ModelMetadata metadata, CreateMetadataArguments args)
+		{
+			metadata.TemplateHint = "DropDownList";
+			metadata.AdditionalValues["Items"] = new[] {"Kansas", "Missouri"};
+		}
+	}
 `
 
 Then just decorate your input model with your new attribute, and your custom metadata handler will be run whenever MVC retrieves metadata for your object.
